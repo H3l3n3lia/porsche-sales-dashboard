@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Porsche Sales Intelligence</title>
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+<style>
+:root{
+  --bg:#07090b;--panel:#0d1115;--panel2:#11171c;--border:#202a32;
+  --text:#f5f5f5;--muted:#98a3ad;--red:#d50000;--red2:#ff2636;
+}
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(180deg,#050608 0%,#090d10 100%);
+color:var(--text);font-family:Arial,Helvetica,sans-serif}
+.container{max-width:1500px;margin:auto;padding:0 28px 28px}
+.topbar{height:58px;background:#050607;border-bottom:1px solid #171b1f;
+display:flex;align-items:center;justify-content:space-between;padding:0 30px;
+letter-spacing:4px;font-size:13px}
+.brand{font-size:22px;font-weight:500;letter-spacing:3px}
+.motto{font-size:11px;letter-spacing:5px}
+.hero{height:330px;border-bottom:1px solid #1c242b;position:relative;
+background-image:linear-gradient(90deg,rgba(3,5,7,.96) 0%,rgba(3,5,7,.65) 35%,rgba(3,5,7,.08) 75%),url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Porsche_Cayenne_%282023%29_%2854832849799%29.jpg/1280px-Porsche_Cayenne_%282023%29_%2854832849799%29.jpg');
+background-size:cover;background-position:center 47%;display:flex;align-items:center}
+.hero-copy{padding:0 50px;max-width:650px}
+.eyebrow{font-size:15px;letter-spacing:4px;margin-bottom:8px}
+.hero h1{font-size:45px;letter-spacing:7px;font-weight:300;margin:0 0 10px}
+.hero p{color:#b9c0c6;font-size:16px;letter-spacing:1px;margin:0}
+.redline{width:52px;height:3px;background:var(--red);margin-top:24px}
+.dashboard{display:grid;grid-template-columns:180px 1fr;gap:20px;margin-top:18px}
+.sidebar{background:#080c10;border:1px solid #151d23;border-radius:0 12px 12px 0;padding:18px 12px;min-height:650px}
+.side-item{padding:15px 10px;color:#aab3bb;font-size:13px;border-left:3px solid transparent}
+.side-item.active{color:#fff;border-left-color:var(--red);background:linear-gradient(90deg,#16191d,transparent)}
+.side-icon{display:inline-block;width:27px;color:#d8dde1}
+.side-caption{margin:110px 10px 0;color:#9da7af;font-size:10px;line-height:1.8;letter-spacing:2px;text-transform:uppercase}
+.main{min-width:0}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:14px}
+.kpi,.filters,.chart,.notice{background:linear-gradient(145deg,#0e1419,#0a0e12);
+border:1px solid var(--border);border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.18)}
+.kpi{padding:18px 20px;min-height:118px}
+.kpi-label{font-size:11px;color:#aab4bd;letter-spacing:.7px;text-transform:uppercase}
+.kpi-value{font-size:25px;margin-top:10px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.kpi-accent{margin-top:12px;width:38px;height:2px;background:var(--red)}
+.filters{padding:16px 18px;margin-bottom:14px;display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+.filters-title{grid-column:1/-1;font-size:15px;font-weight:600;margin-bottom:-2px}
+label{display:block;color:#8e9aa4;font-size:10px;text-transform:uppercase;letter-spacing:1px;margin-bottom:7px}
+select{width:100%;background:#0b1014;color:#f2f2f2;border:1px solid #26313a;border-radius:6px;padding:10px 9px;outline:none}
+select:focus{border-color:#66717a}
+.actions{grid-column:1/-1;display:flex;justify-content:flex-end}
+button{background:transparent;border:1px solid #34414b;color:#c8d0d6;border-radius:6px;padding:8px 13px;cursor:pointer}
+button:hover{border-color:#d50000;color:#fff}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.chart{padding:12px;min-height:410px}
+.chart.full{grid-column:1/-1}
+.chart-title{padding:6px 9px 0;font-size:15px;font-weight:600}
+.chart-subtitle{padding:4px 9px;color:#78848e;font-size:11px}
+.chart-body{height:350px}
+.notice{margin-top:14px;padding:13px 16px;color:#aab4bd;font-size:12px;display:flex;align-items:center;gap:10px}
+.notice strong{color:#fff}
+footer{display:flex;justify-content:space-between;color:#6f7a84;font-size:11px;margin-top:18px;padding:0 2px}
+@media(max-width:1100px){
+ .dashboard{grid-template-columns:1fr}.sidebar{display:none}.filters{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:750px){
+ .container{padding:0 12px 20px}.hero{height:300px}.hero-copy{padding:0 24px}
+ .hero h1{font-size:31px;letter-spacing:4px}.kpis{grid-template-columns:1fr 1fr}.filters{grid-template-columns:1fr 1fr}.grid{grid-template-columns:1fr}.chart.full{grid-column:auto}
+}
+@media(max-width:500px){
+ .kpis,.filters{grid-template-columns:1fr}.topbar{padding:0 15px}.motto{display:none}
+}
+</style>
+<!-- Hero photo: Porsche Cayenne (2023), Wikimedia Commons, CC0. Source: https://commons.wikimedia.org/wiki/File:Porsche_Cayenne_(2023)_(54832849799).jpg -->
+</head>
+<body>
+<div class="topbar"><div class="brand">PORSCHE</div><div class="motto">DRIVEN BY DREAMS</div></div>
+<div class="container">
+<section class="hero" aria-label="Porsche Cayenne hero image">
+  <div class="hero-copy">
+    <div class="eyebrow">ANÁLISE DE VENDAS</div>
+    <h1>PORSCHE</h1>
+    <p>Performance em cada decisão.</p>
+    <div class="redline"></div>
+  </div>
+</section>
+
+<div class="dashboard">
+<aside class="sidebar">
+  <div class="side-item active"><span class="side-icon">⌂</span>Visão Geral</div>
+  <div class="side-item"><span class="side-icon">▱</span>Modelos</div>
+  <div class="side-item"><span class="side-icon">⌖</span>Cidades</div>
+  <div class="side-item"><span class="side-icon">◷</span>Tempo</div>
+  <div class="side-item"><span class="side-icon">▤</span>Relatórios</div>
+  <div class="side-caption">LUXO<br>PERFORMANCE<br>INOVAÇÃO<div class="redline"></div></div>
+</aside>
+
+<main class="main">
+<section class="kpis">
+  <div class="kpi"><div class="kpi-label">Total de vendas</div><div class="kpi-value" id="kpiSales">—</div><div class="kpi-accent"></div></div>
+  <div class="kpi"><div class="kpi-label">Receita total</div><div class="kpi-value" id="kpiRevenue">—</div><div class="kpi-accent"></div></div>
+  <div class="kpi"><div class="kpi-label">Ticket médio</div><div class="kpi-value" id="kpiAvg">—</div><div class="kpi-accent"></div></div>
+  <div class="kpi"><div class="kpi-label">Modelo mais vendido</div><div class="kpi-value" id="kpiModel">—</div><div class="kpi-accent"></div></div>
+</section>
+
+<section class="filters">
+  <div class="filters-title">Filtros</div>
+  <div><label>Modelo</label><select id="f_PorscheModel"><option value="">Todos</option></select></div>
+  <div><label>Cidade</label><select id="f_City"><option value="">Todos</option></select></div>
+  <div><label>Estado</label><select id="f_State"><option value="">Todos</option></select></div>
+  <div><label>Ano</label><select id="f_ModelYear"><option value="">Todos</option></select></div>
+  <div><label>Forma de pagamento</label><select id="f_PayMethod"><option value="">Todos</option></select></div>
+  <div><label>Status da entrega</label><select id="f_DeliveryStatus"><option value="">Todos</option></select></div>
+  <div class="actions"><button id="clearFilters">Limpar filtros</button></div>
+</section>
+
+<section class="grid">
+  <div class="chart"><div class="chart-title">Receita por Modelo</div><div class="chart-subtitle">Modelos com maior contribuição financeira</div><div id="modelChart" class="chart-body"></div></div>
+  <div class="chart"><div class="chart-title">Vendas por Cidade</div><div class="chart-subtitle">Principais mercados em volume de vendas</div><div id="cityChart" class="chart-body"></div></div>
+  <div class="chart full"><div class="chart-title">Evolução da Receita</div><div class="chart-subtitle">Receita mensal — datas válidas</div><div id="timeChart" class="chart-body"></div></div>
+</section>
+
+<div class="notice">ⓘ <span><strong>Qualidade dos dados:</strong> 24 registros possuem data inválida e foram excluídos apenas da análise temporal.</span></div>
+</main>
+</div>
+
+<footer><span>Porsche Sales Dashboard &nbsp;|&nbsp; 100 vendas analisadas</span><span>Dados tratados e visualizados para insights estratégicos.</span></footer>
+</div>
+
+<script>
+const DATA = [{"SaleDate": null, "PorscheModel": "718 Cayman", "ModelYear": 2022, "SalesPrice": 79500.0, "VehicleMileage": 9800, "PayMethod": "Credit Card", "City": "Boston", "State": "MA", "DeliveryStatus": "Delivered"}, {"SaleDate": "2024-03-14", "PorscheModel": "911 Turbo S", "ModelYear": 2024, "SalesPrice": 235000.0, "VehicleMileage": 1200, "PayMethod": "Wire Transfer", "City": "Seattle", "State": "WA", "DeliveryStatus": "Delivered"}, {"SaleDate": "2024-04-18", "PorscheModel": "Cayenne Coupe", "ModelYear": 2023, "SalesPrice": 112750.0, "VehicleMileage": 6400, "PayMethod": "Financing", "City": "Austin", "State": "TX", "DeliveryStatus": "In Transit"}, {"SaleDate": null, "PorscheModel": "Macan S", "ModelYear": 2021, "SalesPrice": 68900.0, "VehicleMileage": 28, "PayMethod": "Cash", "City": "Denver", "State": "CO", "DeliveryStatus": "Pending"}, {"SaleDate": "2024-05-22", "PorscheModel": "Taycan 4S", "ModelYear": 2024, "SalesPrice": 121000.0, "VehicleMileage": 0, "PayMethod": "Bank Transfer", "City": "Los Angeles", "State": "CA", "DeliveryStatus": "Delivered"}, {"SaleDate": "2024-08-06", "PorscheModel": "Panamera 4", "ModelYear": 2023, "SalesPrice": 104500.0, "VehicleMileage": 14500, "PayMethod": "Credit Card", "City": "Miami", "State": "FL", "DeliveryStatus": "Cancelled"}, {"SaleDate": "2024-07-11", "PorscheModel": "911 Carrera S", "ModelYear": 2020, "SalesPrice": 96300.0, "VehicleMileage": 41000, "PayMethod": "Lease", "City": "New York", "State": "NY", "DeliveryStatus": "Delivered"}, {"SaleDate": null, "PorscheModel": "Cayenne E-Hybrid", "ModelYear": 2022, "SalesPrice": 89750.0, "VehicleMileage": 11744, "PayMethod": "Wire Transfer", "City": "San Diego", "State": "CA", "DeliveryStatus": "Pending Approval"}, {"SaleDate": "2024-08-19", "PorscheModel": "718 Boxster", "ModelYear": 2021, "SalesPrice": 73500.0, "VehicleMileage": 22300, "PayMethod": "Debit Card", "City": "Chicago", "State": "IL", "DeliveryStatus": "Shipped"}, {"SaleDate": "2024-09-02", "PorscheModel": "Macan GTS", "ModelYear": 2024, "SalesPrice": 95000.0, "VehicleMileage": 3500, "PayMethod": "Financing", "City": "Phoenix", "State": "AZ", "DeliveryStatus": "In Transit"}, {"SaleDate": "2024-09-17", "PorscheModel": "Taycan Turbo", "ModelYear": 2023, "SalesPrice": 153200.5, "VehicleMileage": 11, "PayMethod": "ACH Payment", "City": "Dallas", "State": "TX", "DeliveryStatus": "Delivered"}, {"SaleDate": null, "PorscheModel": "911 GT3", "ModelYear": 2024, "SalesPrice": 241000.0, "VehicleMileage": 750, "PayMethod": "Wire Transfer", "City": "Las Vegas", "State": "NV", "DeliveryStatus": "Pending"}, {"SaleDate": "2024-05-11", "PorscheModel": "Panamera Turbo S", "ModelYear": 2022, "SalesPrice": 132000.0, "VehicleMileage": 19250, "PayMethod": "Cash", "City": "San Jose", "State": "CA", "DeliveryStatus": "Delivered"}, {"SaleDate": "2024-12-12", "PorscheModel": "Cayenne Turbo GT", "ModelYear": 2024, "SalesPrice": 188000.0, "VehicleMileage": 2100, "PayMethod": "Crypto Payment", "City": "Houston", "State": "TX", "DeliveryStatus": "Awaiting Delivery"}, {"SaleDate": "2024-12-25", "PorscheModel": "911 Carrera Cabriolet", "ModelYear": 2023, "SalesPrice": 127800.0, "VehicleMileage": 12000, "PayMethod": "Credit Card", "City": "Atlanta", "State": "GA", "DeliveryStatus": "Delivered"}, {"SaleDate": "2025-01-06", "PorscheModel": "Macan", "ModelYear": 2021, "SalesPrice": 58900.0, "VehicleMileage": 33700, "PayMethod": "Bank Transfer", "City": "Orlando", "State": "FL", "DeliveryStatus": "Pending"}, {"SaleDate": null, "PorscheModel": "718 Spyder RS", "ModelYear": 2024, "SalesPrice": 164000.0, "VehicleMileage": 900, "PayMethod": "Financing", "City": "Portland", "State": "OR", "DeliveryStatus": "In Transit"}, {"SaleDate": "2025-02-14", "PorscheModel": "Taycan Cross Turismo", "ModelYear": 2023, "SalesPrice": 118500.0, "VehicleMileage": 7800, "PayMethod": "Wire Transfer", "City": "Charlotte", "State": "NC", "DeliveryStatus": "Delivered"}, {"SaleDate": null, "PorscheModel": "Cayenne S", "ModelYear": 2022, "SalesPrice": 91300.0, "VehicleMileage": 16000, "PayMethod": "Credit Card", "City": "Nashville", "State": "TN", "DeliveryStatus": "Pending"}, {"SaleDate": "2025-03-21", "PorscheModel": "911 Targa 4S", "ModelYear": 2024, "SalesPrice": 158750.0, "VehicleMileage": 2500, "PayMethod": "Lease", "City": "Minneapolis", "State": "MN", "DeliveryStatus": "Delivered"}, {"SaleDate": "2025-03-28", "PorscheModel": "Panamera", "ModelYear": 2020, "SalesPrice": 72000.0, "VehicleMileage": 49000, "PayMethod": "Bank Transfer", "City": "Philadelphia", "State": "PA", "DeliveryStatus": "Cancelled"}, {"SaleDate": "2025-04-09", "PorscheModel": "Macan Electric", "ModelYear": 2025, "SalesPrice": 86500.0, "VehicleMileage": 0, "PayMethod": "Wire Transfer", "City": "San Antonio", "State": "TX", "DeliveryStatus": "Delivered"}, {"SaleDate": null, "PorscheModel": "911 Dakar", "ModelYear": 2024, "SalesPrice": 270000.0, "VehicleMileage": 1050, "PayMethod": "Cash", "City": "Salt Lake City", "State": "UT", "DeliveryStatus": "Awaiting Pickup"}, {"SaleDate": "2025-05-12", "PorscheModel": "Taycan GTS", "ModelYear": 2023, "SalesPrice": 139000.0, "VehicleMileage": 6250, "PayMethod": "Financing", "City": "Raleigh", "State": "NC", "DeliveryStatus": "In Transit"}, {"SaleDate": "2025-06-18", "PorscheModel": "Cayenne", "ModelYear": 2021, "SalesPrice": 76800.0, "VehicleMileage": 38400, "PayMethod": "Credit Card", "City": "Detroit", "State": "MI", "DeliveryStatus": "Delivered"}, {"SaleDate": null, "PorscheModel": "718 Cayman GT4 RS", "ModelYear": 2024, "SalesPrice": 173600.0, "VehicleMileage": 400, "PayMethod": "Wire Transfer", "City": "Columbus", "State": "OH", "DeliveryStatus": "Pending"}, {"SaleDate": "2025-07-07", "PorscheModel": "911 Carrera GTS", "ModelYear": 2022, "SalesPrice": 119900.0, "VehicleMileage": 13600, "PayMethod": "Cash", "City": "Indianapolis", "State": "IN", "DeliveryStatus": "Delivered"}, {"SaleDate": "2025-07-22", "PorscheModel": "Panamera 4 E-Hybrid", "ModelYear": 2023, "SalesPrice": 109250.0, "VehicleMileage": 8900, "PayMethod": "Lease", "City": "Fort Worth", "State": "TX", "DeliveryStatus": "In Transit"}, {"SaleDate": "2025-08-14", "PorscheModel": "Macan T", "ModelYear": 2022, "SalesPrice": 82000.0, "VehicleMileage": 21750, "PayMethod": "Wire Transfer", "City": "Jacksonville", "State": "FL", "DeliveryStatus": "Delivered"}, {"SaleDate": "2025-09-01", "PorscheModel": "Taycan Turbo S", "ModelYear": 2025, "SalesPrice": 214000.0, "VehicleMileage": 0, "PayMethod": "Crypto Payment", "City": "San Diego", "State": "CA", "DeliveryStatus": "Pending Review"}, {"SaleDate": null, "PorscheModel": "911 Carrera", "ModelYear": 2024, "SalesPrice": 124500.0, "VehicleMileage": 4800, "PayMethod": "Credit Card", "City": "Tampa", "State": "FL", "DeliveryStatus": "Delivered"}, {"SaleDate": "2025-09-18", "PorscheModel": "Cayenne S", "ModelYear": 2023, "SalesPrice": 98200.0, "VehicleMileage": 12200, "PayMethod": "Bank Transfer", "City": "Sacramento", "State": "CA", "DeliveryStatus": "Pending"}, {"SaleDate": "2025-10-04", "PorscheModel": "Macan", "ModelYear": 2022, "SalesPrice": 67500.0, "VehicleMileage": 24100, "PayMethod": "Financing", "City": "Cleveland", "State": "OH", "DeliveryStatus": "Delivered"}, {"SaleDate": "2025-10-12", "PorscheModel": "Taycan", "ModelYear": 2025, "SalesPrice": 116900.0, "VehicleMileage": 0, "PayMethod": "Wire Transfer", "City": "Milwaukee", "State": "WI", "DeliveryStatus": "In Transit"}, {"SaleDate": "2025-10-29", "PorscheModel": "Panamera 4S", "ModelYear": 2024, "SalesPrice": 112000.0, "VehicleMileage": 10, "PayMethod": "Cash", "City": "Kansas City", "State": "MO", "DeliveryStatus": "Delivered"}, {"SaleDate": "2025-02-11", "PorscheModel": "718 Boxster", "ModelYear": 2021, "SalesPrice": 74000.0, "VehicleMileage": 31000, "PayMethod": "Debit Card", "City": "Omaha", "State": "NE", "DeliveryStatus": "Cancelled"}, {"SaleDate": "2025-11-16", "PorscheModel": "911 Turbo", "ModelYear": 2024, "SalesPrice": 198300.0, "VehicleMileage": 2400, "PayMethod": "Wire Transfer", "City": "Albuquerque", "State": "NM", "DeliveryStatus": "Awaiting Delivery"}, {"SaleDate": null, "PorscheModel": "Cayenne Coupe", "ModelYear": 2023, "SalesPrice": 103750.0, "VehicleMileage": 6773, "PayMethod": "Wire Transfer", "City": "Tucson", "State": "AZ", "DeliveryStatus": "Pending Approval"}, {"SaleDate": null, "PorscheModel": "Macan GTS", "ModelYear": 2024, "SalesPrice": 93600.0, "VehicleMileage": 5800, "PayMethod": "Financing", "City": "Fresno", "State": "CA", "DeliveryStatus": "Shipped"}, {"SaleDate": "2025-12-07", "PorscheModel": "Taycan 4S", "ModelYear": 2025, "SalesPrice": 129000.0, "VehicleMileage": 0, "PayMethod": "ACH Payment", "City": "Virginia Beach", "State": "VA", "DeliveryStatus": "In Transit"}, {"SaleDate": "2025-12-22", "PorscheModel": "Panamera Turbo", "ModelYear": 2022, "SalesPrice": 136000.0, "VehicleMileage": 18400, "PayMethod": "Credit Card", "City": "Colorado Springs", "State": "CO", "DeliveryStatus": "Delivered"}, {"SaleDate": null, "PorscheModel": "911 GT3 RS", "ModelYear": 2024, "SalesPrice": 286500.0, "VehicleMileage": 700, "PayMethod": "Wire Transfer", "City": "Arlington", "State": "TX", "DeliveryStatus": "Pending"}, {"SaleDate": "2026-01-08", "PorscheModel": "Cayenne E-Hybrid", "ModelYear": 2023, "SalesPrice": 92800.0, "VehicleMileage": 15000, "PayMethod": "Lease", "City": "Bakersfield", "State": "CA", "DeliveryStatus": "Delivered"}, {"SaleDate": "2026-01-15", "PorscheModel": "Macan T", "ModelYear": 2022, "SalesPrice": 72400.0, "VehicleMileage": 19750, "PayMethod": "Cash", "City": "Mesa", "State": "AZ", "DeliveryStatus": "Awaiting Pickup"}, {"SaleDate": "2026-01-28", "PorscheModel": "Taycan Turbo", "ModelYear": 2025, "SalesPrice": 158500.0, "VehicleMileage": 3200, "PayMethod": "Crypto Payment", "City": "Atlanta", "State": "GA", "DeliveryStatus": "Delivered"}, {"SaleDate": "2026-02-03", "PorscheModel": "718 Cayman", "ModelYear": 2021, "SalesPrice": 69900.0, "VehicleMileage": 27600, "PayMethod": "Bank Transfer", "City": "Long Beach", "State": "CA", "DeliveryStatus": "Pending"}, {"SaleDate": null, "PorscheModel": "911 Targa 4", "ModelYear": 2024, "SalesPrice": 141250.0, "VehicleMileage": 2100, "PayMethod": "Financing", "City": "Oakland", "State": "CA", "DeliveryStatus": "In Transit"}, {"SaleDate": "2026-02-19", "PorscheModel": "Panamera", "ModelYear": 2020, "SalesPrice": 71500.0, "VehicleMileage": 52000, "PayMethod": "Wire Transfer", "City": "Tulsa", "State": "OK", "DeliveryStatus": "Delivered"}, {"SaleDate": "2026-02-25", "PorscheModel": "Cayenne Turbo", "ModelYear": 2023, "SalesPrice": 146800.0, "VehicleMileage": 11300, "PayMethod": "Credit Card", "City": "Wichita", "State": "KS", "DeliveryStatus": "Pending"}, {"SaleDate": "2026-03-01", "PorscheModel": "Macan Electric", "ModelYear": 2025, "SalesPrice": 89700.0, "VehicleMileage": 0, "PayMethod": "Lease", "City": "New Orleans", "State": "LA", "DeliveryStatus": "Delivered"}, {"SaleDate": "2026-03-14", "PorscheModel": "911 Carrera S", "ModelYear": 2022, "SalesPrice": 104600.0, "VehicleMileage": 15900, "PayMethod": "Bank Transfer", "City": "Honolulu", "State": "HI", "DeliveryStatus": "Cancelled"}, {"SaleDate": null, "PorscheModel": "Taycan GTS", "ModelYear": 2024, "SalesPrice": 142000.0, "VehicleMileage": 6600, "PayMethod": "Wire Transfer", "City": "Anaheim", "State": "CA", "DeliveryStatus": "Delivered"}, {"SaleDate": "2026-04-08", "PorscheModel": "Cayenne", "ModelYear": 2021, "SalesPrice": 78400.0, "VehicleMileage": 40250, "PayMethod": "Cash", "City": "Henderson", "State": "NV", "DeliveryStatus": "Awaiting Review"}, {"SaleDate": null, "PorscheModel": "718 Spyder RS", "ModelYear": 2025, "SalesPrice": 169000.0, "VehicleMileage": 850, "PayMethod": "Financing", "City": "Lexington", "State": "KY", "DeliveryStatus": "In Transit"}, {"SaleDate": "2026-04-21", "PorscheModel": "911 Dakar", "ModelYear": 2024, "SalesPrice": 268900.0, "VehicleMileage": 1400, "PayMethod": "Credit Card", "City": "Riverside", "State": "CA", "DeliveryStatus": "Delivered"}, {"SaleDate": "2026-04-29", "PorscheModel": "Panamera 4", "ModelYear": 2023, "SalesPrice": 101300.0, "VehicleMileage": 12700, "PayMethod": "Wire Transfer", "City": "Corpus Christi", "State": "TX", "DeliveryStatus": "Pending"}, {"SaleDate": "2026-05-05", "PorscheModel": "Macan S", "ModelYear": 2021, "SalesPrice": 66750.0, "VehicleMileage": 29800, "PayMethod": "Cash", "City": "St. Louis", "State": "MO", "DeliveryStatus": "Delivered"}, {"SaleDate": "2026-05-14", "PorscheModel": "Taycan Cross Turismo", "ModelYear": 2024, "SalesPrice": 127900.0, "VehicleMileage": 7500, "PayMethod": "Lease", "City": "Pittsburgh", "State": "PA", "DeliveryStatus": "In Transit"}, {"SaleDate": "2026-05-23", "PorscheModel": "Cayenne Turbo GT", "ModelYear": 2025, "SalesPrice": 200000.0, "VehicleMileage": 1950, "PayMethod": "Wire Transfer", "City": "Cincinnati", "State": "OH", "DeliveryStatus": "Delivered"}, {"SaleDate": "2026-06-02", "PorscheModel": "911 Carrera Cabriolet", "ModelYear": 2023, "SalesPrice": 132000.0, "VehicleMileage": 8800, "PayMethod": "Crypto Payment", "City": "Anchorage", "State": "AK", "DeliveryStatus": "Pending Review"}, {"SaleDate": "2026-06-15", "PorscheModel": "718 Cayman GT4 RS", "ModelYear": 2024, "SalesPrice": 176400.0, "VehicleMileage": 600, "PayMethod": "Credit Card", "City": "Plano", "State": "TX", "DeliveryStatus": "Delivered"}, {"SaleDate": null, "PorscheModel": "Panamera 4 E-Hybrid", "ModelYear": 2022, "SalesPrice": 108500.0, "VehicleMileage": 16200, "PayMethod": "Bank Transfer", "City": "Newark", "State": "NJ", "DeliveryStatus": "Cancelled"}, {"SaleDate": "2026-07-07", "PorscheModel": "Macan", "ModelYear": 2021, "SalesPrice": 59000.0, "VehicleMileage": 36000, "PayMethod": "Financing", "City": "Greensboro", "State": "NC", "DeliveryStatus": "Awaiting Delivery"}, {"SaleDate": "2026-07-20", "PorscheModel": "Taycan Turbo S", "ModelYear": 2025, "SalesPrice": 218000.0, "VehicleMileage": 0, "PayMethod": "Wire Transfer", "City": "Lincoln", "State": "NE", "DeliveryStatus": "Pending"}, {"SaleDate": null, "PorscheModel": "Cayenne S", "ModelYear": 2024, "SalesPrice": 99950.0, "VehicleMileage": 5300, "PayMethod": "Debit Card", "City": "Jersey City", "State": "NJ", "DeliveryStatus": "Delivered"}, {"SaleDate": "2026-04-08", "PorscheModel": "911 Carrera GTS", "ModelYear": 2024, "SalesPrice": 121750.0, "VehicleMileage": 5872, "PayMethod": "Credit Card", "City": "Chandler", "State": "AZ", "DeliveryStatus": "Delivered"}, {"SaleDate": "2026-08-18", "PorscheModel": "718 Boxster GTS", "ModelYear": 2023, "SalesPrice": 91500.0, "VehicleMileage": 13300, "PayMethod": "Lease", "City": "Reno", "State": "NV", "DeliveryStatus": "Shipped"}, {"SaleDate": "2026-08-31", "PorscheModel": "Panamera Turbo S", "ModelYear": 2022, "SalesPrice": 134000.0, "VehicleMileage": 20100, "PayMethod": "Wire Transfer", "City": "Buffalo", "State": "NY", "DeliveryStatus": "In Transit"}, {"SaleDate": "2026-09-09", "PorscheModel": "Macan GTS", "ModelYear": 2024, "SalesPrice": 96800.0, "VehicleMileage": 0, "PayMethod": "ACH Payment", "City": "Durham", "State": "NC", "DeliveryStatus": "Delivered"}, {"SaleDate": "2026-09-17", "PorscheModel": "Taycan 4S", "ModelYear": 2025, "SalesPrice": 131600.0, "VehicleMileage": 2900, "PayMethod": "Wire Transfer", "City": "Laredo", "State": "TX", "DeliveryStatus": "Pending Approval"}, {"SaleDate": "2026-09-28", "PorscheModel": "Cayenne E-Hybrid", "ModelYear": 2023, "SalesPrice": 94300.0, "VehicleMileage": 13100, "PayMethod": "Cash", "City": "Madison", "State": "WI", "DeliveryStatus": "Delivered"}, {"SaleDate": "2026-10-06", "PorscheModel": "911 Turbo S", "ModelYear": 2025, "SalesPrice": 242000.0, "VehicleMileage": 1100, "PayMethod": "Crypto Payment", "City": "Lubbock", "State": "TX", "DeliveryStatus": "Awaiting Pickup"}, {"SaleDate": "2026-10-16", "PorscheModel": "718 Cayman S", "ModelYear": 2022, "SalesPrice": 82750.0, "VehicleMileage": 22500, "PayMethod": "Credit Card", "City": "Toledo", "State": "OH", "DeliveryStatus": "Cancelled"}, {"SaleDate": "2026-10-29", "PorscheModel": "Macan Electric", "ModelYear": 2026, "SalesPrice": 91300.0, "VehicleMileage": 0, "PayMethod": "Wire Transfer", "City": "Irvine", "State": "CA", "DeliveryStatus": "Delivered"}, {"SaleDate": "2026-11-03", "PorscheModel": "Panamera", "ModelYear": 2021, "SalesPrice": 79900.0, "VehicleMileage": 44800, "PayMethod": "Financing", "City": "Garland", "State": "TX", "DeliveryStatus": "Pending"}, {"SaleDate": null, "PorscheModel": "Cayenne Coupe", "ModelYear": 2024, "SalesPrice": 111000.0, "VehicleMileage": 6700, "PayMethod": "Bank Transfer", "City": "Irving", "State": "TX", "DeliveryStatus": "In Transit"}, {"SaleDate": "2026-12-11", "PorscheModel": "911 Targa 4S", "ModelYear": 2023, "SalesPrice": 156500.0, "VehicleMileage": 4200, "PayMethod": "Cash", "City": "Chesapeake", "State": "VA", "DeliveryStatus": "Delivered"}, {"SaleDate": "2026-12-24", "PorscheModel": "Taycan", "ModelYear": 2025, "SalesPrice": 119900.0, "VehicleMileage": 1250, "PayMethod": "Lease", "City": "Scottsdale", "State": "AZ", "DeliveryStatus": "Pending"}, {"SaleDate": null, "PorscheModel": "Macan T", "ModelYear": 2022, "SalesPrice": 73200.0, "VehicleMileage": 18600, "PayMethod": "Wire Transfer", "City": "Norfolk", "State": "VA", "DeliveryStatus": "Delivered"}, {"SaleDate": "2026-12-28", "PorscheModel": "911 GT3", "ModelYear": 2024, "SalesPrice": 224000.0, "VehicleMileage": 3000, "PayMethod": "Wire Transfer", "City": "Boise", "State": "ID", "DeliveryStatus": "Awaiting Delivery"}, {"SaleDate": "2027-01-15", "PorscheModel": "911 Carrera", "ModelYear": 2024, "SalesPrice": 126900.0, "VehicleMileage": 7200, "PayMethod": "Credit Card", "City": "Orlando", "State": "FL", "DeliveryStatus": "Delivered"}, {"SaleDate": "2027-01-29", "PorscheModel": "Cayenne", "ModelYear": 2023, "SalesPrice": 84500.0, "VehicleMileage": 21400, "PayMethod": "Bank Transfer", "City": "San Jose", "State": "CA", "DeliveryStatus": "Pending"}, {"SaleDate": "2027-02-11", "PorscheModel": "Macan S", "ModelYear": 2022, "SalesPrice": 69800.0, "VehicleMileage": 26300, "PayMethod": "Financing", "City": "Tampa", "State": "FL", "DeliveryStatus": "Delivered"}, {"SaleDate": null, "PorscheModel": "Taycan 4S", "ModelYear": 2025, "SalesPrice": 132700.0, "VehicleMileage": 0, "PayMethod": "Wire Transfer", "City": "Denver", "State": "CO", "DeliveryStatus": "In Transit"}, {"SaleDate": "2027-03-05", "PorscheModel": "Panamera", "ModelYear": 2021, "SalesPrice": 81000.0, "VehicleMileage": 42, "PayMethod": "Cash", "City": "Austin", "State": "TX", "DeliveryStatus": "Delivered"}, {"SaleDate": "2027-03-18", "PorscheModel": "718 Cayman", "ModelYear": 2023, "SalesPrice": 78900.0, "VehicleMileage": 17500, "PayMethod": "Debit Card", "City": "Seattle", "State": "WA", "DeliveryStatus": "Cancelled"}, {"SaleDate": "2027-04-02", "PorscheModel": "911 Turbo S", "ModelYear": 2026, "SalesPrice": 249300.0, "VehicleMileage": 900, "PayMethod": "Wire Transfer", "City": "Boston", "State": "MA", "DeliveryStatus": "Awaiting Delivery"}, {"SaleDate": null, "PorscheModel": "Cayenne Coupe", "ModelYear": 2024, "SalesPrice": 108750.0, "VehicleMileage": 5530, "PayMethod": "Wire Transfer", "City": "Phoenix", "State": "AZ", "DeliveryStatus": "Pending Approval"}, {"SaleDate": null, "PorscheModel": "Macan Electric", "ModelYear": 2026, "SalesPrice": 92600.0, "VehicleMileage": 0, "PayMethod": "Financing", "City": "Chicago", "State": "IL", "DeliveryStatus": "Shipped"}, {"SaleDate": "2027-05-12", "PorscheModel": "Taycan Turbo", "ModelYear": 2025, "SalesPrice": 164000.0, "VehicleMileage": 0, "PayMethod": "ACH Payment", "City": "Dallas", "State": "TX", "DeliveryStatus": "In Transit"}, {"SaleDate": "2027-05-27", "PorscheModel": "Panamera 4S", "ModelYear": 2024, "SalesPrice": 119000.0, "VehicleMileage": 13400, "PayMethod": "Credit Card", "City": "San Francisco", "State": "CA", "DeliveryStatus": "Delivered"}, {"SaleDate": null, "PorscheModel": "911 GT3", "ModelYear": 2026, "SalesPrice": 232500.0, "VehicleMileage": 1700, "PayMethod": "Wire Transfer", "City": "Las Vegas", "State": "NV", "DeliveryStatus": "Pending"}, {"SaleDate": "2027-06-18", "PorscheModel": "Cayenne E-Hybrid", "ModelYear": 2023, "SalesPrice": 96800.0, "VehicleMileage": 14000, "PayMethod": "Lease", "City": "Charlotte", "State": "NC", "DeliveryStatus": "Delivered"}, {"SaleDate": "2027-07-03", "PorscheModel": "Macan T", "ModelYear": 2022, "SalesPrice": 74400.0, "VehicleMileage": 20750, "PayMethod": "Cash", "City": "Mesa", "State": "AZ", "DeliveryStatus": "Awaiting Pickup"}, {"SaleDate": "2027-07-22", "PorscheModel": "Taycan GTS", "ModelYear": 2025, "SalesPrice": 148500.0, "VehicleMileage": 5200, "PayMethod": "Crypto Payment", "City": "Atlanta", "State": "GA", "DeliveryStatus": "Delivered"}, {"SaleDate": "2027-08-08", "PorscheModel": "718 Boxster", "ModelYear": 2021, "SalesPrice": 71900.0, "VehicleMileage": 29600, "PayMethod": "Bank Transfer", "City": "Long Beach", "State": "CA", "DeliveryStatus": "Pending"}, {"SaleDate": null, "PorscheModel": "911 Targa 4", "ModelYear": 2024, "SalesPrice": 143250.0, "VehicleMileage": 3100, "PayMethod": "Financing", "City": "Oakland", "State": "CA", "DeliveryStatus": "In Transit"}, {"SaleDate": "2027-09-19", "PorscheModel": "Panamera Turbo", "ModelYear": 2020, "SalesPrice": 137500.0, "VehicleMileage": 48000, "PayMethod": "Wire Transfer", "City": "Tulsa", "State": "OK", "DeliveryStatus": "Delivered"}, {"SaleDate": "2027-09-25", "PorscheModel": "Cayenne Turbo GT", "ModelYear": 2025, "SalesPrice": 204800.0, "VehicleMileage": 3300, "PayMethod": "Credit Card", "City": "Wichita", "State": "KS", "DeliveryStatus": "Pending"}, {"SaleDate": "2027-10-01", "PorscheModel": "911 Dakar", "ModelYear": 2024, "SalesPrice": 271700.0, "VehicleMileage": 1050, "PayMethod": "Lease", "City": "New Orleans", "State": "LA", "DeliveryStatus": "Delivered"}];
+
+const money = v => new Intl.NumberFormat("en-US",{style:"currency",currency:"USD",maximumFractionDigits:2}).format(v);
+
+const filters = [
+  ["PorscheModel","f_PorscheModel"],
+  ["City","f_City"],
+  ["State","f_State"],
+  ["ModelYear","f_ModelYear"],
+  ["PayMethod","f_PayMethod"],
+  ["DeliveryStatus","f_DeliveryStatus"]
+];
+
+function fillFilters(){
+  filters.forEach(([key,id])=>{
+    const s=document.getElementById(id);
+    [...new Set(DATA.map(r=>r[key]).filter(v=>v!==null && v!==""))]
+      .sort((a,b)=>String(a).localeCompare(String(b),undefined,{numeric:true}))
+      .forEach(v=>{const o=document.createElement("option");o.value=v;o.textContent=v;s.appendChild(o)});
+    s.addEventListener("change",render);
+  });
+}
+function filteredRows(){
+  return DATA.filter(r=>filters.every(([key,id])=>{
+    const v=document.getElementById(id).value;
+    return !v || String(r[key])===v;
+  }));
+}
+function countBy(rows,key){
+  const m={};rows.forEach(r=>{if(r[key]!=null)m[r[key]]=(m[r[key]]||0)+1});
+  return Object.entries(m).sort((a,b)=>b[1]-a[1]);
+}
+function sumBy(rows,key,value){
+  const m={};rows.forEach(r=>{if(r[key]!=null)m[r[key]]=(m[r[key]]||0)+Number(r[value]||0)});
+  return Object.entries(m).sort((a,b)=>b[1]-a[1]);
+}
+const baseLayout={
+  paper_bgcolor:"transparent",plot_bgcolor:"transparent",
+  font:{color:"#e8edf1",family:"Arial, sans-serif"},
+  margin:{l:55,r:18,t:8,b:48},
+  xaxis:{gridcolor:"#202a32",zerolinecolor:"#202a32"},
+  yaxis:{gridcolor:"#202a32",zerolinecolor:"#202a32"}
+};
+const config={displayModeBar:false,responsive:true};
+
+function render(){
+  const rows=filteredRows();
+  const revenue=rows.reduce((s,r)=>s+Number(r.SalesPrice||0),0);
+  const avg=rows.length?revenue/rows.length:0;
+  const models=countBy(rows,"PorscheModel");
+
+  document.getElementById("kpiSales").textContent=rows.length;
+  document.getElementById("kpiRevenue").textContent=money(revenue);
+  document.getElementById("kpiAvg").textContent=money(avg);
+  document.getElementById("kpiModel").textContent=models[0]?.[0]||"—";
+
+  const model=sumBy(rows,"PorscheModel","SalesPrice").slice(0,10).reverse();
+  Plotly.react("modelChart",[{
+    x:model.map(x=>x[1]),y:model.map(x=>x[0]),type:"bar",orientation:"h",
+    marker:{color:"#d50000"},text:model.map(x=>money(x[1])),
+    textposition:"outside",cliponaxis:false,
+    hovertemplate:"%{y}<br>%{x:$,.2f}<extra></extra>"
+  }],{...baseLayout,xaxis:{...baseLayout.xaxis,tickprefix:"$"},height:350},config);
+
+  const cities=countBy(rows,"City").slice(0,10).reverse();
+  Plotly.react("cityChart",[{
+    x:cities.map(x=>x[1]),y:cities.map(x=>x[0]),type:"bar",orientation:"h",
+    marker:{color:"#d50000"},text:cities.map(x=>x[1]),textposition:"outside",cliponaxis:false,
+    hovertemplate:"%{y}<br>%{x} vendas<extra></extra>"
+  }],{...baseLayout,xaxis:{...baseLayout.xaxis,dtick:1},height:350},config);
+
+  const valid=rows.filter(r=>r.SaleDate);
+  const monthly={};
+  valid.forEach(r=>{
+    const k=r.SaleDate.slice(0,7);
+    monthly[k]=(monthly[k]||0)+Number(r.SalesPrice||0);
+  });
+  const series=Object.entries(monthly).sort((a,b)=>a[0].localeCompare(b[0]));
+  Plotly.react("timeChart",[{
+    x:series.map(x=>x[0]),y:series.map(x=>x[1]),type:"scatter",mode:"lines+markers",
+    line:{color:"#d50000",width:3},marker:{color:"#ff2636",size:7},
+    fill:"tozeroy",fillcolor:"rgba(213,0,0,.16)",
+    hovertemplate:"%{x}<br>%{y:$,.2f}<extra></extra>"
+  }],{...baseLayout,xaxis:{...baseLayout.xaxis},yaxis:{...baseLayout.yaxis,tickprefix:"$"},height:350},config);
+}
+
+document.getElementById("clearFilters").onclick=()=>{
+  filters.forEach(([k,id])=>document.getElementById(id).value="");render();
+};
+fillFilters();render();
+</script>
+</body>
+</html>
