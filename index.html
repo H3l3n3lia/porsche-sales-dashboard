@@ -128,94 +128,855 @@ footer{display:flex;justify-content:space-between;color:#6f7a84;font-size:11px;m
 <script>
 const DATA = [{"SaleDate": null, "PorscheModel": "718 Cayman", "ModelYear": 2022, "SalesPrice": 79500.0, "VehicleMileage": 9800, "PayMethod": "Credit Card", "City": "Boston", "State": "MA", "DeliveryStatus": "Delivered"}, {"SaleDate": "2024-03-14", "PorscheModel": "911 Turbo S", "ModelYear": 2024, "SalesPrice": 235000.0, "VehicleMileage": 1200, "PayMethod": "Wire Transfer", "City": "Seattle", "State": "WA", "DeliveryStatus": "Delivered"}, {"SaleDate": "2024-04-18", "PorscheModel": "Cayenne Coupe", "ModelYear": 2023, "SalesPrice": 112750.0, "VehicleMileage": 6400, "PayMethod": "Financing", "City": "Austin", "State": "TX", "DeliveryStatus": "In Transit"}, {"SaleDate": null, "PorscheModel": "Macan S", "ModelYear": 2021, "SalesPrice": 68900.0, "VehicleMileage": 28, "PayMethod": "Cash", "City": "Denver", "State": "CO", "DeliveryStatus": "Pending"}, {"SaleDate": "2024-05-22", "PorscheModel": "Taycan 4S", "ModelYear": 2024, "SalesPrice": 121000.0, "VehicleMileage": 0, "PayMethod": "Bank Transfer", "City": "Los Angeles", "State": "CA", "DeliveryStatus": "Delivered"}, {"SaleDate": "2024-08-06", "PorscheModel": "Panamera 4", "ModelYear": 2023, "SalesPrice": 104500.0, "VehicleMileage": 14500, "PayMethod": "Credit Card", "City": "Miami", "State": "FL", "DeliveryStatus": "Cancelled"}, {"SaleDate": "2024-07-11", "PorscheModel": "911 Carrera S", "ModelYear": 2020, "SalesPrice": 96300.0, "VehicleMileage": 41000, "PayMethod": "Lease", "City": "New York", "State": "NY", "DeliveryStatus": "Delivered"}, {"SaleDate": null, "PorscheModel": "Cayenne E-Hybrid", "ModelYear": 2022, "SalesPrice": 89750.0, "VehicleMileage": 11744, "PayMethod": "Wire Transfer", "City": "San Diego", "State": "CA", "DeliveryStatus": "Pending Approval"}, {"SaleDate": "2024-08-19", "PorscheModel": "718 Boxster", "ModelYear": 2021, "SalesPrice": 73500.0, "VehicleMileage": 22300, "PayMethod": "Debit Card", "City": "Chicago", "State": "IL", "DeliveryStatus": "Shipped"}, {"SaleDate": "2024-09-02", "PorscheModel": "Macan GTS", "ModelYear": 2024, "SalesPrice": 95000.0, "VehicleMileage": 3500, "PayMethod": "Financing", "City": "Phoenix", "State": "AZ", "DeliveryStatus": "In Transit"}, {"SaleDate": "2024-09-17", "PorscheModel": "Taycan Turbo", "ModelYear": 2023, "SalesPrice": 153200.5, "VehicleMileage": 11, "PayMethod": "ACH Payment", "City": "Dallas", "State": "TX", "DeliveryStatus": "Delivered"}, {"SaleDate": null, "PorscheModel": "911 GT3", "ModelYear": 2024, "SalesPrice": 241000.0, "VehicleMileage": 750, "PayMethod": "Wire Transfer", "City": "Las Vegas", "State": "NV", "DeliveryStatus": "Pending"}, {"SaleDate": "2024-05-11", "PorscheModel": "Panamera Turbo S", "ModelYear": 2022, "SalesPrice": 132000.0, "VehicleMileage": 19250, "PayMethod": "Cash", "City": "San Jose", "State": "CA", "DeliveryStatus": "Delivered"}, {"SaleDate": "2024-12-12", "PorscheModel": "Cayenne Turbo GT", "ModelYear": 2024, "SalesPrice": 188000.0, "VehicleMileage": 2100, "PayMethod": "Crypto Payment", "City": "Houston", "State": "TX", "DeliveryStatus": "Awaiting Delivery"}, {"SaleDate": "2024-12-25", "PorscheModel": "911 Carrera Cabriolet", "ModelYear": 2023, "SalesPrice": 127800.0, "VehicleMileage": 12000, "PayMethod": "Credit Card", "City": "Atlanta", "State": "GA", "DeliveryStatus": "Delivered"}, {"SaleDate": "2025-01-06", "PorscheModel": "Macan", "ModelYear": 2021, "SalesPrice": 58900.0, "VehicleMileage": 33700, "PayMethod": "Bank Transfer", "City": "Orlando", "State": "FL", "DeliveryStatus": "Pending"}, {"SaleDate": null, "PorscheModel": "718 Spyder RS", "ModelYear": 2024, "SalesPrice": 164000.0, "VehicleMileage": 900, "PayMethod": "Financing", "City": "Portland", "State": "OR", "DeliveryStatus": "In Transit"}, {"SaleDate": "2025-02-14", "PorscheModel": "Taycan Cross Turismo", "ModelYear": 2023, "SalesPrice": 118500.0, "VehicleMileage": 7800, "PayMethod": "Wire Transfer", "City": "Charlotte", "State": "NC", "DeliveryStatus": "Delivered"}, {"SaleDate": null, "PorscheModel": "Cayenne S", "ModelYear": 2022, "SalesPrice": 91300.0, "VehicleMileage": 16000, "PayMethod": "Credit Card", "City": "Nashville", "State": "TN", "DeliveryStatus": "Pending"}, {"SaleDate": "2025-03-21", "PorscheModel": "911 Targa 4S", "ModelYear": 2024, "SalesPrice": 158750.0, "VehicleMileage": 2500, "PayMethod": "Lease", "City": "Minneapolis", "State": "MN", "DeliveryStatus": "Delivered"}, {"SaleDate": "2025-03-28", "PorscheModel": "Panamera", "ModelYear": 2020, "SalesPrice": 72000.0, "VehicleMileage": 49000, "PayMethod": "Bank Transfer", "City": "Philadelphia", "State": "PA", "DeliveryStatus": "Cancelled"}, {"SaleDate": "2025-04-09", "PorscheModel": "Macan Electric", "ModelYear": 2025, "SalesPrice": 86500.0, "VehicleMileage": 0, "PayMethod": "Wire Transfer", "City": "San Antonio", "State": "TX", "DeliveryStatus": "Delivered"}, {"SaleDate": null, "PorscheModel": "911 Dakar", "ModelYear": 2024, "SalesPrice": 270000.0, "VehicleMileage": 1050, "PayMethod": "Cash", "City": "Salt Lake City", "State": "UT", "DeliveryStatus": "Awaiting Pickup"}, {"SaleDate": "2025-05-12", "PorscheModel": "Taycan GTS", "ModelYear": 2023, "SalesPrice": 139000.0, "VehicleMileage": 6250, "PayMethod": "Financing", "City": "Raleigh", "State": "NC", "DeliveryStatus": "In Transit"}, {"SaleDate": "2025-06-18", "PorscheModel": "Cayenne", "ModelYear": 2021, "SalesPrice": 76800.0, "VehicleMileage": 38400, "PayMethod": "Credit Card", "City": "Detroit", "State": "MI", "DeliveryStatus": "Delivered"}, {"SaleDate": null, "PorscheModel": "718 Cayman GT4 RS", "ModelYear": 2024, "SalesPrice": 173600.0, "VehicleMileage": 400, "PayMethod": "Wire Transfer", "City": "Columbus", "State": "OH", "DeliveryStatus": "Pending"}, {"SaleDate": "2025-07-07", "PorscheModel": "911 Carrera GTS", "ModelYear": 2022, "SalesPrice": 119900.0, "VehicleMileage": 13600, "PayMethod": "Cash", "City": "Indianapolis", "State": "IN", "DeliveryStatus": "Delivered"}, {"SaleDate": "2025-07-22", "PorscheModel": "Panamera 4 E-Hybrid", "ModelYear": 2023, "SalesPrice": 109250.0, "VehicleMileage": 8900, "PayMethod": "Lease", "City": "Fort Worth", "State": "TX", "DeliveryStatus": "In Transit"}, {"SaleDate": "2025-08-14", "PorscheModel": "Macan T", "ModelYear": 2022, "SalesPrice": 82000.0, "VehicleMileage": 21750, "PayMethod": "Wire Transfer", "City": "Jacksonville", "State": "FL", "DeliveryStatus": "Delivered"}, {"SaleDate": "2025-09-01", "PorscheModel": "Taycan Turbo S", "ModelYear": 2025, "SalesPrice": 214000.0, "VehicleMileage": 0, "PayMethod": "Crypto Payment", "City": "San Diego", "State": "CA", "DeliveryStatus": "Pending Review"}, {"SaleDate": null, "PorscheModel": "911 Carrera", "ModelYear": 2024, "SalesPrice": 124500.0, "VehicleMileage": 4800, "PayMethod": "Credit Card", "City": "Tampa", "State": "FL", "DeliveryStatus": "Delivered"}, {"SaleDate": "2025-09-18", "PorscheModel": "Cayenne S", "ModelYear": 2023, "SalesPrice": 98200.0, "VehicleMileage": 12200, "PayMethod": "Bank Transfer", "City": "Sacramento", "State": "CA", "DeliveryStatus": "Pending"}, {"SaleDate": "2025-10-04", "PorscheModel": "Macan", "ModelYear": 2022, "SalesPrice": 67500.0, "VehicleMileage": 24100, "PayMethod": "Financing", "City": "Cleveland", "State": "OH", "DeliveryStatus": "Delivered"}, {"SaleDate": "2025-10-12", "PorscheModel": "Taycan", "ModelYear": 2025, "SalesPrice": 116900.0, "VehicleMileage": 0, "PayMethod": "Wire Transfer", "City": "Milwaukee", "State": "WI", "DeliveryStatus": "In Transit"}, {"SaleDate": "2025-10-29", "PorscheModel": "Panamera 4S", "ModelYear": 2024, "SalesPrice": 112000.0, "VehicleMileage": 10, "PayMethod": "Cash", "City": "Kansas City", "State": "MO", "DeliveryStatus": "Delivered"}, {"SaleDate": "2025-02-11", "PorscheModel": "718 Boxster", "ModelYear": 2021, "SalesPrice": 74000.0, "VehicleMileage": 31000, "PayMethod": "Debit Card", "City": "Omaha", "State": "NE", "DeliveryStatus": "Cancelled"}, {"SaleDate": "2025-11-16", "PorscheModel": "911 Turbo", "ModelYear": 2024, "SalesPrice": 198300.0, "VehicleMileage": 2400, "PayMethod": "Wire Transfer", "City": "Albuquerque", "State": "NM", "DeliveryStatus": "Awaiting Delivery"}, {"SaleDate": null, "PorscheModel": "Cayenne Coupe", "ModelYear": 2023, "SalesPrice": 103750.0, "VehicleMileage": 6773, "PayMethod": "Wire Transfer", "City": "Tucson", "State": "AZ", "DeliveryStatus": "Pending Approval"}, {"SaleDate": null, "PorscheModel": "Macan GTS", "ModelYear": 2024, "SalesPrice": 93600.0, "VehicleMileage": 5800, "PayMethod": "Financing", "City": "Fresno", "State": "CA", "DeliveryStatus": "Shipped"}, {"SaleDate": "2025-12-07", "PorscheModel": "Taycan 4S", "ModelYear": 2025, "SalesPrice": 129000.0, "VehicleMileage": 0, "PayMethod": "ACH Payment", "City": "Virginia Beach", "State": "VA", "DeliveryStatus": "In Transit"}, {"SaleDate": "2025-12-22", "PorscheModel": "Panamera Turbo", "ModelYear": 2022, "SalesPrice": 136000.0, "VehicleMileage": 18400, "PayMethod": "Credit Card", "City": "Colorado Springs", "State": "CO", "DeliveryStatus": "Delivered"}, {"SaleDate": null, "PorscheModel": "911 GT3 RS", "ModelYear": 2024, "SalesPrice": 286500.0, "VehicleMileage": 700, "PayMethod": "Wire Transfer", "City": "Arlington", "State": "TX", "DeliveryStatus": "Pending"}, {"SaleDate": "2026-01-08", "PorscheModel": "Cayenne E-Hybrid", "ModelYear": 2023, "SalesPrice": 92800.0, "VehicleMileage": 15000, "PayMethod": "Lease", "City": "Bakersfield", "State": "CA", "DeliveryStatus": "Delivered"}, {"SaleDate": "2026-01-15", "PorscheModel": "Macan T", "ModelYear": 2022, "SalesPrice": 72400.0, "VehicleMileage": 19750, "PayMethod": "Cash", "City": "Mesa", "State": "AZ", "DeliveryStatus": "Awaiting Pickup"}, {"SaleDate": "2026-01-28", "PorscheModel": "Taycan Turbo", "ModelYear": 2025, "SalesPrice": 158500.0, "VehicleMileage": 3200, "PayMethod": "Crypto Payment", "City": "Atlanta", "State": "GA", "DeliveryStatus": "Delivered"}, {"SaleDate": "2026-02-03", "PorscheModel": "718 Cayman", "ModelYear": 2021, "SalesPrice": 69900.0, "VehicleMileage": 27600, "PayMethod": "Bank Transfer", "City": "Long Beach", "State": "CA", "DeliveryStatus": "Pending"}, {"SaleDate": null, "PorscheModel": "911 Targa 4", "ModelYear": 2024, "SalesPrice": 141250.0, "VehicleMileage": 2100, "PayMethod": "Financing", "City": "Oakland", "State": "CA", "DeliveryStatus": "In Transit"}, {"SaleDate": "2026-02-19", "PorscheModel": "Panamera", "ModelYear": 2020, "SalesPrice": 71500.0, "VehicleMileage": 52000, "PayMethod": "Wire Transfer", "City": "Tulsa", "State": "OK", "DeliveryStatus": "Delivered"}, {"SaleDate": "2026-02-25", "PorscheModel": "Cayenne Turbo", "ModelYear": 2023, "SalesPrice": 146800.0, "VehicleMileage": 11300, "PayMethod": "Credit Card", "City": "Wichita", "State": "KS", "DeliveryStatus": "Pending"}, {"SaleDate": "2026-03-01", "PorscheModel": "Macan Electric", "ModelYear": 2025, "SalesPrice": 89700.0, "VehicleMileage": 0, "PayMethod": "Lease", "City": "New Orleans", "State": "LA", "DeliveryStatus": "Delivered"}, {"SaleDate": "2026-03-14", "PorscheModel": "911 Carrera S", "ModelYear": 2022, "SalesPrice": 104600.0, "VehicleMileage": 15900, "PayMethod": "Bank Transfer", "City": "Honolulu", "State": "HI", "DeliveryStatus": "Cancelled"}, {"SaleDate": null, "PorscheModel": "Taycan GTS", "ModelYear": 2024, "SalesPrice": 142000.0, "VehicleMileage": 6600, "PayMethod": "Wire Transfer", "City": "Anaheim", "State": "CA", "DeliveryStatus": "Delivered"}, {"SaleDate": "2026-04-08", "PorscheModel": "Cayenne", "ModelYear": 2021, "SalesPrice": 78400.0, "VehicleMileage": 40250, "PayMethod": "Cash", "City": "Henderson", "State": "NV", "DeliveryStatus": "Awaiting Review"}, {"SaleDate": null, "PorscheModel": "718 Spyder RS", "ModelYear": 2025, "SalesPrice": 169000.0, "VehicleMileage": 850, "PayMethod": "Financing", "City": "Lexington", "State": "KY", "DeliveryStatus": "In Transit"}, {"SaleDate": "2026-04-21", "PorscheModel": "911 Dakar", "ModelYear": 2024, "SalesPrice": 268900.0, "VehicleMileage": 1400, "PayMethod": "Credit Card", "City": "Riverside", "State": "CA", "DeliveryStatus": "Delivered"}, {"SaleDate": "2026-04-29", "PorscheModel": "Panamera 4", "ModelYear": 2023, "SalesPrice": 101300.0, "VehicleMileage": 12700, "PayMethod": "Wire Transfer", "City": "Corpus Christi", "State": "TX", "DeliveryStatus": "Pending"}, {"SaleDate": "2026-05-05", "PorscheModel": "Macan S", "ModelYear": 2021, "SalesPrice": 66750.0, "VehicleMileage": 29800, "PayMethod": "Cash", "City": "St. Louis", "State": "MO", "DeliveryStatus": "Delivered"}, {"SaleDate": "2026-05-14", "PorscheModel": "Taycan Cross Turismo", "ModelYear": 2024, "SalesPrice": 127900.0, "VehicleMileage": 7500, "PayMethod": "Lease", "City": "Pittsburgh", "State": "PA", "DeliveryStatus": "In Transit"}, {"SaleDate": "2026-05-23", "PorscheModel": "Cayenne Turbo GT", "ModelYear": 2025, "SalesPrice": 200000.0, "VehicleMileage": 1950, "PayMethod": "Wire Transfer", "City": "Cincinnati", "State": "OH", "DeliveryStatus": "Delivered"}, {"SaleDate": "2026-06-02", "PorscheModel": "911 Carrera Cabriolet", "ModelYear": 2023, "SalesPrice": 132000.0, "VehicleMileage": 8800, "PayMethod": "Crypto Payment", "City": "Anchorage", "State": "AK", "DeliveryStatus": "Pending Review"}, {"SaleDate": "2026-06-15", "PorscheModel": "718 Cayman GT4 RS", "ModelYear": 2024, "SalesPrice": 176400.0, "VehicleMileage": 600, "PayMethod": "Credit Card", "City": "Plano", "State": "TX", "DeliveryStatus": "Delivered"}, {"SaleDate": null, "PorscheModel": "Panamera 4 E-Hybrid", "ModelYear": 2022, "SalesPrice": 108500.0, "VehicleMileage": 16200, "PayMethod": "Bank Transfer", "City": "Newark", "State": "NJ", "DeliveryStatus": "Cancelled"}, {"SaleDate": "2026-07-07", "PorscheModel": "Macan", "ModelYear": 2021, "SalesPrice": 59000.0, "VehicleMileage": 36000, "PayMethod": "Financing", "City": "Greensboro", "State": "NC", "DeliveryStatus": "Awaiting Delivery"}, {"SaleDate": "2026-07-20", "PorscheModel": "Taycan Turbo S", "ModelYear": 2025, "SalesPrice": 218000.0, "VehicleMileage": 0, "PayMethod": "Wire Transfer", "City": "Lincoln", "State": "NE", "DeliveryStatus": "Pending"}, {"SaleDate": null, "PorscheModel": "Cayenne S", "ModelYear": 2024, "SalesPrice": 99950.0, "VehicleMileage": 5300, "PayMethod": "Debit Card", "City": "Jersey City", "State": "NJ", "DeliveryStatus": "Delivered"}, {"SaleDate": "2026-04-08", "PorscheModel": "911 Carrera GTS", "ModelYear": 2024, "SalesPrice": 121750.0, "VehicleMileage": 5872, "PayMethod": "Credit Card", "City": "Chandler", "State": "AZ", "DeliveryStatus": "Delivered"}, {"SaleDate": "2026-08-18", "PorscheModel": "718 Boxster GTS", "ModelYear": 2023, "SalesPrice": 91500.0, "VehicleMileage": 13300, "PayMethod": "Lease", "City": "Reno", "State": "NV", "DeliveryStatus": "Shipped"}, {"SaleDate": "2026-08-31", "PorscheModel": "Panamera Turbo S", "ModelYear": 2022, "SalesPrice": 134000.0, "VehicleMileage": 20100, "PayMethod": "Wire Transfer", "City": "Buffalo", "State": "NY", "DeliveryStatus": "In Transit"}, {"SaleDate": "2026-09-09", "PorscheModel": "Macan GTS", "ModelYear": 2024, "SalesPrice": 96800.0, "VehicleMileage": 0, "PayMethod": "ACH Payment", "City": "Durham", "State": "NC", "DeliveryStatus": "Delivered"}, {"SaleDate": "2026-09-17", "PorscheModel": "Taycan 4S", "ModelYear": 2025, "SalesPrice": 131600.0, "VehicleMileage": 2900, "PayMethod": "Wire Transfer", "City": "Laredo", "State": "TX", "DeliveryStatus": "Pending Approval"}, {"SaleDate": "2026-09-28", "PorscheModel": "Cayenne E-Hybrid", "ModelYear": 2023, "SalesPrice": 94300.0, "VehicleMileage": 13100, "PayMethod": "Cash", "City": "Madison", "State": "WI", "DeliveryStatus": "Delivered"}, {"SaleDate": "2026-10-06", "PorscheModel": "911 Turbo S", "ModelYear": 2025, "SalesPrice": 242000.0, "VehicleMileage": 1100, "PayMethod": "Crypto Payment", "City": "Lubbock", "State": "TX", "DeliveryStatus": "Awaiting Pickup"}, {"SaleDate": "2026-10-16", "PorscheModel": "718 Cayman S", "ModelYear": 2022, "SalesPrice": 82750.0, "VehicleMileage": 22500, "PayMethod": "Credit Card", "City": "Toledo", "State": "OH", "DeliveryStatus": "Cancelled"}, {"SaleDate": "2026-10-29", "PorscheModel": "Macan Electric", "ModelYear": 2026, "SalesPrice": 91300.0, "VehicleMileage": 0, "PayMethod": "Wire Transfer", "City": "Irvine", "State": "CA", "DeliveryStatus": "Delivered"}, {"SaleDate": "2026-11-03", "PorscheModel": "Panamera", "ModelYear": 2021, "SalesPrice": 79900.0, "VehicleMileage": 44800, "PayMethod": "Financing", "City": "Garland", "State": "TX", "DeliveryStatus": "Pending"}, {"SaleDate": null, "PorscheModel": "Cayenne Coupe", "ModelYear": 2024, "SalesPrice": 111000.0, "VehicleMileage": 6700, "PayMethod": "Bank Transfer", "City": "Irving", "State": "TX", "DeliveryStatus": "In Transit"}, {"SaleDate": "2026-12-11", "PorscheModel": "911 Targa 4S", "ModelYear": 2023, "SalesPrice": 156500.0, "VehicleMileage": 4200, "PayMethod": "Cash", "City": "Chesapeake", "State": "VA", "DeliveryStatus": "Delivered"}, {"SaleDate": "2026-12-24", "PorscheModel": "Taycan", "ModelYear": 2025, "SalesPrice": 119900.0, "VehicleMileage": 1250, "PayMethod": "Lease", "City": "Scottsdale", "State": "AZ", "DeliveryStatus": "Pending"}, {"SaleDate": null, "PorscheModel": "Macan T", "ModelYear": 2022, "SalesPrice": 73200.0, "VehicleMileage": 18600, "PayMethod": "Wire Transfer", "City": "Norfolk", "State": "VA", "DeliveryStatus": "Delivered"}, {"SaleDate": "2026-12-28", "PorscheModel": "911 GT3", "ModelYear": 2024, "SalesPrice": 224000.0, "VehicleMileage": 3000, "PayMethod": "Wire Transfer", "City": "Boise", "State": "ID", "DeliveryStatus": "Awaiting Delivery"}, {"SaleDate": "2027-01-15", "PorscheModel": "911 Carrera", "ModelYear": 2024, "SalesPrice": 126900.0, "VehicleMileage": 7200, "PayMethod": "Credit Card", "City": "Orlando", "State": "FL", "DeliveryStatus": "Delivered"}, {"SaleDate": "2027-01-29", "PorscheModel": "Cayenne", "ModelYear": 2023, "SalesPrice": 84500.0, "VehicleMileage": 21400, "PayMethod": "Bank Transfer", "City": "San Jose", "State": "CA", "DeliveryStatus": "Pending"}, {"SaleDate": "2027-02-11", "PorscheModel": "Macan S", "ModelYear": 2022, "SalesPrice": 69800.0, "VehicleMileage": 26300, "PayMethod": "Financing", "City": "Tampa", "State": "FL", "DeliveryStatus": "Delivered"}, {"SaleDate": null, "PorscheModel": "Taycan 4S", "ModelYear": 2025, "SalesPrice": 132700.0, "VehicleMileage": 0, "PayMethod": "Wire Transfer", "City": "Denver", "State": "CO", "DeliveryStatus": "In Transit"}, {"SaleDate": "2027-03-05", "PorscheModel": "Panamera", "ModelYear": 2021, "SalesPrice": 81000.0, "VehicleMileage": 42, "PayMethod": "Cash", "City": "Austin", "State": "TX", "DeliveryStatus": "Delivered"}, {"SaleDate": "2027-03-18", "PorscheModel": "718 Cayman", "ModelYear": 2023, "SalesPrice": 78900.0, "VehicleMileage": 17500, "PayMethod": "Debit Card", "City": "Seattle", "State": "WA", "DeliveryStatus": "Cancelled"}, {"SaleDate": "2027-04-02", "PorscheModel": "911 Turbo S", "ModelYear": 2026, "SalesPrice": 249300.0, "VehicleMileage": 900, "PayMethod": "Wire Transfer", "City": "Boston", "State": "MA", "DeliveryStatus": "Awaiting Delivery"}, {"SaleDate": null, "PorscheModel": "Cayenne Coupe", "ModelYear": 2024, "SalesPrice": 108750.0, "VehicleMileage": 5530, "PayMethod": "Wire Transfer", "City": "Phoenix", "State": "AZ", "DeliveryStatus": "Pending Approval"}, {"SaleDate": null, "PorscheModel": "Macan Electric", "ModelYear": 2026, "SalesPrice": 92600.0, "VehicleMileage": 0, "PayMethod": "Financing", "City": "Chicago", "State": "IL", "DeliveryStatus": "Shipped"}, {"SaleDate": "2027-05-12", "PorscheModel": "Taycan Turbo", "ModelYear": 2025, "SalesPrice": 164000.0, "VehicleMileage": 0, "PayMethod": "ACH Payment", "City": "Dallas", "State": "TX", "DeliveryStatus": "In Transit"}, {"SaleDate": "2027-05-27", "PorscheModel": "Panamera 4S", "ModelYear": 2024, "SalesPrice": 119000.0, "VehicleMileage": 13400, "PayMethod": "Credit Card", "City": "San Francisco", "State": "CA", "DeliveryStatus": "Delivered"}, {"SaleDate": null, "PorscheModel": "911 GT3", "ModelYear": 2026, "SalesPrice": 232500.0, "VehicleMileage": 1700, "PayMethod": "Wire Transfer", "City": "Las Vegas", "State": "NV", "DeliveryStatus": "Pending"}, {"SaleDate": "2027-06-18", "PorscheModel": "Cayenne E-Hybrid", "ModelYear": 2023, "SalesPrice": 96800.0, "VehicleMileage": 14000, "PayMethod": "Lease", "City": "Charlotte", "State": "NC", "DeliveryStatus": "Delivered"}, {"SaleDate": "2027-07-03", "PorscheModel": "Macan T", "ModelYear": 2022, "SalesPrice": 74400.0, "VehicleMileage": 20750, "PayMethod": "Cash", "City": "Mesa", "State": "AZ", "DeliveryStatus": "Awaiting Pickup"}, {"SaleDate": "2027-07-22", "PorscheModel": "Taycan GTS", "ModelYear": 2025, "SalesPrice": 148500.0, "VehicleMileage": 5200, "PayMethod": "Crypto Payment", "City": "Atlanta", "State": "GA", "DeliveryStatus": "Delivered"}, {"SaleDate": "2027-08-08", "PorscheModel": "718 Boxster", "ModelYear": 2021, "SalesPrice": 71900.0, "VehicleMileage": 29600, "PayMethod": "Bank Transfer", "City": "Long Beach", "State": "CA", "DeliveryStatus": "Pending"}, {"SaleDate": null, "PorscheModel": "911 Targa 4", "ModelYear": 2024, "SalesPrice": 143250.0, "VehicleMileage": 3100, "PayMethod": "Financing", "City": "Oakland", "State": "CA", "DeliveryStatus": "In Transit"}, {"SaleDate": "2027-09-19", "PorscheModel": "Panamera Turbo", "ModelYear": 2020, "SalesPrice": 137500.0, "VehicleMileage": 48000, "PayMethod": "Wire Transfer", "City": "Tulsa", "State": "OK", "DeliveryStatus": "Delivered"}, {"SaleDate": "2027-09-25", "PorscheModel": "Cayenne Turbo GT", "ModelYear": 2025, "SalesPrice": 204800.0, "VehicleMileage": 3300, "PayMethod": "Credit Card", "City": "Wichita", "State": "KS", "DeliveryStatus": "Pending"}, {"SaleDate": "2027-10-01", "PorscheModel": "911 Dakar", "ModelYear": 2024, "SalesPrice": 271700.0, "VehicleMileage": 1050, "PayMethod": "Lease", "City": "New Orleans", "State": "LA", "DeliveryStatus": "Delivered"}];
 
-const money = v => new Intl.NumberFormat("en-US",{style:"currency",currency:"USD",maximumFractionDigits:2}).format(v);
+const money = v => new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
+  maximumFractionDigits: 2
+}).format(Number(v) || 0);
 
 const filters = [
-  ["PorscheModel","f_PorscheModel"],
-  ["City","f_City"],
-  ["State","f_State"],
-  ["ModelYear","f_ModelYear"],
-  ["PayMethod","f_PayMethod"],
-  ["DeliveryStatus","f_DeliveryStatus"]
+  ["PorscheModel", "f_PorscheModel"],
+  ["City", "f_City"],
+  ["State", "f_State"],
+  ["ModelYear", "f_ModelYear"],
+  ["PayMethod", "f_PayMethod"],
+  ["DeliveryStatus", "f_DeliveryStatus"]
 ];
 
-function fillFilters(){
-  filters.forEach(([key,id])=>{
-    const s=document.getElementById(id);
-    [...new Set(DATA.map(r=>r[key]).filter(v=>v!==null && v!==""))]
-      .sort((a,b)=>String(a).localeCompare(String(b),undefined,{numeric:true}))
-      .forEach(v=>{const o=document.createElement("option");o.value=v;o.textContent=v;s.appendChild(o)});
-    s.addEventListener("change",render);
+let activeSection = "Visão Geral";
+
+const main = document.querySelector(".main");
+const originalKpis = document.querySelector(".kpis");
+const originalFilters = document.querySelector(".filters");
+const originalGrid = document.querySelector(".grid");
+const originalNotice = document.querySelector(".notice");
+
+function fillFilters() {
+  filters.forEach(([key, id]) => {
+    const select = document.getElementById(id);
+    if (!select) return;
+
+    const values = [...new Set(
+      DATA
+        .map(r => r[key])
+        .filter(v => v !== null && v !== undefined && v !== "")
+    )];
+
+    values
+      .sort((a, b) =>
+        String(a).localeCompare(String(b), undefined, { numeric: true })
+      )
+      .forEach(value => {
+        const option = document.createElement("option");
+        option.value = value;
+        option.textContent = value;
+        select.appendChild(option);
+      });
+
+    select.addEventListener("change", render);
   });
 }
-function filteredRows(){
-  return DATA.filter(r=>filters.every(([key,id])=>{
-    const v=document.getElementById(id).value;
-    return !v || String(r[key])===v;
-  }));
+
+function filteredRows() {
+  return DATA.filter(row =>
+    filters.every(([key, id]) => {
+      const value = document.getElementById(id)?.value;
+      return !value || String(row[key]) === String(value);
+    })
+  );
 }
-function countBy(rows,key){
-  const m={};rows.forEach(r=>{if(r[key]!=null)m[r[key]]=(m[r[key]]||0)+1});
-  return Object.entries(m).sort((a,b)=>b[1]-a[1]);
-}
-function sumBy(rows,key,value){
-  const m={};rows.forEach(r=>{if(r[key]!=null)m[r[key]]=(m[r[key]]||0)+Number(r[value]||0)});
-  return Object.entries(m).sort((a,b)=>b[1]-a[1]);
-}
-const baseLayout={
-  paper_bgcolor:"transparent",plot_bgcolor:"transparent",
-  font:{color:"#e8edf1",family:"Arial, sans-serif"},
-  margin:{l:55,r:18,t:8,b:48},
-  xaxis:{gridcolor:"#202a32",zerolinecolor:"#202a32"},
-  yaxis:{gridcolor:"#202a32",zerolinecolor:"#202a32"}
-};
-const config={displayModeBar:false,responsive:true};
 
-function render(){
-  const rows=filteredRows();
-  const revenue=rows.reduce((s,r)=>s+Number(r.SalesPrice||0),0);
-  const avg=rows.length?revenue/rows.length:0;
-  const models=countBy(rows,"PorscheModel");
+function countBy(rows, key) {
+  const result = {};
 
-  document.getElementById("kpiSales").textContent=rows.length;
-  document.getElementById("kpiRevenue").textContent=money(revenue);
-  document.getElementById("kpiAvg").textContent=money(avg);
-  document.getElementById("kpiModel").textContent=models[0]?.[0]||"—";
-
-  const model=sumBy(rows,"PorscheModel","SalesPrice").slice(0,10).reverse();
-  Plotly.react("modelChart",[{
-    x:model.map(x=>x[1]),y:model.map(x=>x[0]),type:"bar",orientation:"h",
-    marker:{color:"#d50000"},text:model.map(x=>money(x[1])),
-    textposition:"outside",cliponaxis:false,
-    hovertemplate:"%{y}<br>%{x:$,.2f}<extra></extra>"
-  }],{...baseLayout,xaxis:{...baseLayout.xaxis,tickprefix:"$"},height:350},config);
-
-  const cities=countBy(rows,"City").slice(0,10).reverse();
-  Plotly.react("cityChart",[{
-    x:cities.map(x=>x[1]),y:cities.map(x=>x[0]),type:"bar",orientation:"h",
-    marker:{color:"#d50000"},text:cities.map(x=>x[1]),textposition:"outside",cliponaxis:false,
-    hovertemplate:"%{y}<br>%{x} vendas<extra></extra>"
-  }],{...baseLayout,xaxis:{...baseLayout.xaxis,dtick:1},height:350},config);
-
-  const valid=rows.filter(r=>r.SaleDate);
-  const monthly={};
-  valid.forEach(r=>{
-    const k=r.SaleDate.slice(0,7);
-    monthly[k]=(monthly[k]||0)+Number(r.SalesPrice||0);
+  rows.forEach(row => {
+    const value = row[key];
+    if (value !== null && value !== undefined && value !== "") {
+      result[value] = (result[value] || 0) + 1;
+    }
   });
-  const series=Object.entries(monthly).sort((a,b)=>a[0].localeCompare(b[0]));
-  Plotly.react("timeChart",[{
-    x:series.map(x=>x[0]),y:series.map(x=>x[1]),type:"scatter",mode:"lines+markers",
-    line:{color:"#d50000",width:3},marker:{color:"#ff2636",size:7},
-    fill:"tozeroy",fillcolor:"rgba(213,0,0,.16)",
-    hovertemplate:"%{x}<br>%{y:$,.2f}<extra></extra>"
-  }],{...baseLayout,xaxis:{...baseLayout.xaxis},yaxis:{...baseLayout.yaxis,tickprefix:"$"},height:350},config);
+
+  return Object.entries(result)
+    .sort((a, b) => b[1] - a[1]);
 }
 
-document.getElementById("clearFilters").onclick=()=>{
-  filters.forEach(([k,id])=>document.getElementById(id).value="");render();
+function sumBy(rows, key, value) {
+  const result = {};
+
+  rows.forEach(row => {
+    const group = row[key];
+
+    if (group !== null && group !== undefined && group !== "") {
+      result[group] =
+        (result[group] || 0) + Number(row[value] || 0);
+    }
+  });
+
+  return Object.entries(result)
+    .sort((a, b) => b[1] - a[1]);
+}
+
+function averageBy(rows, key, value) {
+  const totals = {};
+  const counts = {};
+
+  rows.forEach(row => {
+    const group = row[key];
+
+    if (group !== null && group !== undefined && group !== "") {
+      totals[group] =
+        (totals[group] || 0) + Number(row[value] || 0);
+
+      counts[group] =
+        (counts[group] || 0) + 1;
+    }
+  });
+
+  return Object.entries(totals)
+    .map(([name, total]) => [
+      name,
+      total / counts[name],
+      counts[name]
+    ])
+    .sort((a, b) => b[1] - a[1]);
+}
+
+const baseLayout = {
+  paper_bgcolor: "transparent",
+  plot_bgcolor: "transparent",
+  font: {
+    color: "#e8edf1",
+    family: "Arial, sans-serif"
+  },
+  margin: {
+    l: 55,
+    r: 20,
+    t: 15,
+    b: 50
+  },
+  xaxis: {
+    gridcolor: "#202a32",
+    zerolinecolor: "#202a32"
+  },
+  yaxis: {
+    gridcolor: "#202a32",
+    zerolinecolor: "#202a32"
+  }
 };
-fillFilters();render();
+
+const config = {
+  displayModeBar: false,
+  responsive: true
+};
+
+function updateKPIs(rows) {
+  const revenue = rows.reduce(
+    (sum, row) => sum + Number(row.SalesPrice || 0),
+    0
+  );
+
+  const average = rows.length
+    ? revenue / rows.length
+    : 0;
+
+  const models = countBy(rows, "PorscheModel");
+
+  document.getElementById("kpiSales").textContent =
+    rows.length;
+
+  document.getElementById("kpiRevenue").textContent =
+    money(revenue);
+
+  document.getElementById("kpiAvg").textContent =
+    money(average);
+
+  document.getElementById("kpiModel").textContent =
+    models[0]?.[0] || "—";
+}
+
+function renderOverview(rows) {
+
+  originalGrid.innerHTML = `
+    <div class="chart">
+      <div class="chart-title">Receita por Modelo</div>
+      <div class="chart-subtitle">
+        Modelos com maior contribuição financeira
+      </div>
+      <div id="modelChart" class="chart-body"></div>
+    </div>
+
+    <div class="chart">
+      <div class="chart-title">Vendas por Cidade</div>
+      <div class="chart-subtitle">
+        Principais mercados em volume de vendas
+      </div>
+      <div id="cityChart" class="chart-body"></div>
+    </div>
+
+    <div class="chart full">
+      <div class="chart-title">Evolução da Receita</div>
+      <div class="chart-subtitle">
+        Receita mensal — datas válidas
+      </div>
+      <div id="timeChart" class="chart-body"></div>
+    </div>
+  `;
+
+  const modelData =
+    sumBy(rows, "PorscheModel", "SalesPrice")
+      .slice(0, 10)
+      .reverse();
+
+  Plotly.react(
+    "modelChart",
+    [{
+      x: modelData.map(x => x[1]),
+      y: modelData.map(x => x[0]),
+      type: "bar",
+      orientation: "h",
+      marker: { color: "#d50000" },
+      text: modelData.map(x => money(x[1])),
+      textposition: "outside",
+      cliponaxis: false,
+      hovertemplate:
+        "%{y}<br>%{x:$,.2f}<extra></extra>"
+    }],
+    {
+      ...baseLayout,
+      xaxis: {
+        ...baseLayout.xaxis,
+        tickprefix: "$"
+      },
+      height: 350
+    },
+    config
+  );
+
+  const cityData =
+    countBy(rows, "City")
+      .slice(0, 10)
+      .reverse();
+
+  Plotly.react(
+    "cityChart",
+    [{
+      x: cityData.map(x => x[1]),
+      y: cityData.map(x => x[0]),
+      type: "bar",
+      orientation: "h",
+      marker: { color: "#d50000" },
+      text: cityData.map(x => x[1]),
+      textposition: "outside",
+      cliponaxis: false,
+      hovertemplate:
+        "%{y}<br>%{x} vendas<extra></extra>"
+    }],
+    {
+      ...baseLayout,
+      xaxis: {
+        ...baseLayout.xaxis,
+        dtick: 1
+      },
+      height: 350
+    },
+    config
+  );
+
+  const validDates =
+    rows.filter(row => row.SaleDate);
+
+  const monthly = {};
+
+  validDates.forEach(row => {
+    const month = row.SaleDate.slice(0, 7);
+
+    monthly[month] =
+      (monthly[month] || 0) +
+      Number(row.SalesPrice || 0);
+  });
+
+  const series =
+    Object.entries(monthly)
+      .sort((a, b) => a[0].localeCompare(b[0]));
+
+  Plotly.react(
+    "timeChart",
+    [{
+      x: series.map(x => x[0]),
+      y: series.map(x => x[1]),
+      type: "scatter",
+      mode: "lines+markers",
+      line: {
+        color: "#d50000",
+        width: 3
+      },
+      marker: {
+        color: "#ff2636",
+        size: 7
+      },
+      fill: "tozeroy",
+      fillcolor: "rgba(213,0,0,.16)",
+      hovertemplate:
+        "%{x}<br>%{y:$,.2f}<extra></extra>"
+    }],
+    {
+      ...baseLayout,
+      yaxis: {
+        ...baseLayout.yaxis,
+        tickprefix: "$"
+      },
+      height: 350
+    },
+    config
+  );
+}
+
+function renderModels(rows) {
+
+  const modelSales =
+    countBy(rows, "PorscheModel");
+
+  const modelRevenue =
+    sumBy(rows, "PorscheModel", "SalesPrice");
+
+  originalGrid.innerHTML = `
+    <div class="chart full">
+      <div class="chart-title">
+        Desempenho dos Modelos
+      </div>
+
+      <div class="chart-subtitle">
+        Volume de vendas por modelo
+      </div>
+
+      <div id="modelsSalesChart"
+           class="chart-body"></div>
+    </div>
+
+    <div class="chart full">
+      <div class="chart-title">
+        Receita por Modelo
+      </div>
+
+      <div class="chart-subtitle">
+        Ranking financeiro
+      </div>
+
+      <div id="modelsRevenueChart"
+           class="chart-body"></div>
+    </div>
+  `;
+
+  Plotly.react(
+    "modelsSalesChart",
+    [{
+      x: modelSales.map(x => x[1]),
+      y: modelSales.map(x => x[0]),
+      type: "bar",
+      orientation: "h",
+      marker: { color: "#d50000" },
+      text: modelSales.map(x => x[1]),
+      textposition: "outside",
+      cliponaxis: false
+    }],
+    {
+      ...baseLayout,
+      height: 600,
+      margin: {
+        l: 130,
+        r: 50,
+        t: 20,
+        b: 50
+      },
+      xaxis: {
+        ...baseLayout.xaxis,
+        dtick: 1
+      }
+    },
+    config
+  );
+
+  Plotly.react(
+    "modelsRevenueChart",
+    [{
+      x: modelRevenue
+        .map(x => x[1])
+        .reverse(),
+      y: modelRevenue
+        .map(x => x[0])
+        .reverse(),
+      type: "bar",
+      orientation: "h",
+      marker: { color: "#d50000" },
+      text: modelRevenue
+        .map(x => money(x[1]))
+        .reverse(),
+      textposition: "outside",
+      cliponaxis: false
+    }],
+    {
+      ...baseLayout,
+      height: 600,
+      margin: {
+        l: 130,
+        r: 80,
+        t: 20,
+        b: 50
+      },
+      xaxis: {
+        ...baseLayout.xaxis,
+        tickprefix: "$"
+      }
+    },
+    config
+  );
+}
+
+function renderCities(rows) {
+
+  const cities =
+    countBy(rows, "City")
+      .slice(0, 20);
+
+  const revenue =
+    sumBy(rows, "City", "SalesPrice")
+      .slice(0, 20);
+
+  originalGrid.innerHTML = `
+    <div class="chart">
+      <div class="chart-title">
+        Vendas por Cidade
+      </div>
+      <div class="chart-subtitle">
+        Principais mercados
+      </div>
+      <div id="citiesSalesChart"
+           class="chart-body"></div>
+    </div>
+
+    <div class="chart">
+      <div class="chart-title">
+        Receita por Cidade
+      </div>
+      <div class="chart-subtitle">
+        Principais mercados financeiros
+      </div>
+      <div id="citiesRevenueChart"
+           class="chart-body"></div>
+    </div>
+  `;
+
+  Plotly.react(
+    "citiesSalesChart",
+    [{
+      x: cities.map(x => x[1]).reverse(),
+      y: cities.map(x => x[0]).reverse(),
+      type: "bar",
+      orientation: "h",
+      marker: { color: "#d50000" },
+      text: cities.map(x => x[1]).reverse(),
+      textposition: "outside",
+      cliponaxis: false
+    }],
+    {
+      ...baseLayout,
+      height: 500,
+      xaxis: {
+        ...baseLayout.xaxis,
+        dtick: 1
+      }
+    },
+    config
+  );
+
+  Plotly.react(
+    "citiesRevenueChart",
+    [{
+      x: revenue.map(x => x[1]).reverse(),
+      y: revenue.map(x => x[0]).reverse(),
+      type: "bar",
+      orientation: "h",
+      marker: { color: "#d50000" },
+      text: revenue.map(x => money(x[1])).reverse(),
+      textposition: "outside",
+      cliponaxis: false
+    }],
+    {
+      ...baseLayout,
+      height: 500,
+      xaxis: {
+        ...baseLayout.xaxis,
+        tickprefix: "$"
+      }
+    },
+    config
+  );
+}
+
+function renderTime(rows) {
+
+  const valid =
+    rows.filter(row => row.SaleDate);
+
+  const monthlySales = {};
+  const monthlyRevenue = {};
+
+  valid.forEach(row => {
+
+    const month =
+      row.SaleDate.slice(0, 7);
+
+    monthlySales[month] =
+      (monthlySales[month] || 0) + 1;
+
+    monthlyRevenue[month] =
+      (monthlyRevenue[month] || 0) +
+      Number(row.SalesPrice || 0);
+  });
+
+  const months =
+    Object.keys(monthlyRevenue)
+      .sort();
+
+  originalGrid.innerHTML = `
+    <div class="chart">
+      <div class="chart-title">
+        Volume de Vendas ao Longo do Tempo
+      </div>
+      <div class="chart-subtitle">
+        Quantidade de vendas por mês
+      </div>
+      <div id="monthlySalesChart"
+           class="chart-body"></div>
+    </div>
+
+    <div class="chart">
+      <div class="chart-title">
+        Receita ao Longo do Tempo
+      </div>
+      <div class="chart-subtitle">
+        Receita mensal
+      </div>
+      <div id="monthlyRevenueChart"
+           class="chart-body"></div>
+    </div>
+  `;
+
+  Plotly.react(
+    "monthlySalesChart",
+    [{
+      x: months,
+      y: months.map(m => monthlySales[m]),
+      type: "scatter",
+      mode: "lines+markers",
+      line: {
+        color: "#d50000",
+        width: 3
+      },
+      marker: {
+        color: "#ff2636",
+        size: 7
+      },
+      hovertemplate:
+        "%{x}<br>%{y} vendas<extra></extra>"
+    }],
+    {
+      ...baseLayout,
+      height: 350,
+      xaxis: {
+        ...baseLayout.xaxis,
+        tickangle: -45
+      },
+      yaxis: {
+        ...baseLayout.yaxis,
+        dtick: 1
+      }
+    },
+    config
+  );
+
+  Plotly.react(
+    "monthlyRevenueChart",
+    [{
+      x: months,
+      y: months.map(m => monthlyRevenue[m]),
+      type: "scatter",
+      mode: "lines+markers",
+      line: {
+        color: "#d50000",
+        width: 3
+      },
+      marker: {
+        color: "#ff2636",
+        size: 7
+      },
+      fill: "tozeroy",
+      fillcolor: "rgba(213,0,0,.16)",
+      hovertemplate:
+        "%{x}<br>%{y:$,.2f}<extra></extra>"
+    }],
+    {
+      ...baseLayout,
+      height: 350,
+      xaxis: {
+        ...baseLayout.xaxis,
+        tickangle: -45
+      },
+      yaxis: {
+        ...baseLayout.yaxis,
+        tickprefix: "$"
+      }
+    },
+    config
+  );
+}
+
+function renderReports(rows) {
+
+  const revenue =
+    rows.reduce(
+      (sum, row) =>
+        sum + Number(row.SalesPrice || 0),
+      0
+    );
+
+  const delivered =
+    rows.filter(
+      row => row.DeliveryStatus === "Delivered"
+    ).length;
+
+  const cancelled =
+    rows.filter(
+      row => row.DeliveryStatus === "Cancelled"
+    ).length;
+
+  const invalidDates =
+    rows.filter(
+      row => !row.SaleDate
+    ).length;
+
+  const topModel =
+    countBy(rows, "PorscheModel")[0];
+
+  const topCity =
+    countBy(rows, "City")[0];
+
+  const topPayment =
+    countBy(rows, "PayMethod")[0];
+
+  originalGrid.innerHTML = `
+    <div class="chart">
+      <div class="chart-title">
+        Indicadores da Operação
+      </div>
+
+      <div style="
+        display:grid;
+        grid-template-columns:repeat(2,1fr);
+        gap:12px;
+        padding:20px;
+      ">
+
+        <div class="kpi">
+          <div class="kpi-label">Receita</div>
+          <div class="kpi-value">${money(revenue)}</div>
+        </div>
+
+        <div class="kpi">
+          <div class="kpi-label">Ticket médio</div>
+          <div class="kpi-value">
+            ${money(rows.length ? revenue / rows.length : 0)}
+          </div>
+        </div>
+
+        <div class="kpi">
+          <div class="kpi-label">Entregues</div>
+          <div class="kpi-value">${delivered}</div>
+        </div>
+
+        <div class="kpi">
+          <div class="kpi-label">Canceladas</div>
+          <div class="kpi-value">${cancelled}</div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="chart">
+      <div class="chart-title">
+        Principais Insights
+      </div>
+
+      <div style="
+        padding:20px;
+        line-height:2.1;
+        color:#c8d0d6;
+        font-size:14px;
+      ">
+
+        <div>
+          <strong>Modelo líder:</strong>
+          ${topModel ? topModel[0] : "—"}
+          ${topModel ? `(${topModel[1]} vendas)` : ""}
+        </div>
+
+        <div>
+          <strong>Cidade líder:</strong>
+          ${topCity ? topCity[0] : "—"}
+          ${topCity ? `(${topCity[1]} vendas)` : ""}
+        </div>
+
+        <div>
+          <strong>Forma de pagamento predominante:</strong>
+          ${topPayment ? topPayment[0] : "—"}
+        </div>
+
+        <div>
+          <strong>Datas inválidas:</strong>
+          ${invalidDates}
+        </div>
+
+      </div>
+    </div>
+
+    <div class="chart full">
+      <div class="chart-title">
+        Distribuição por Status de Entrega
+      </div>
+
+      <div id="statusChart"
+           class="chart-body"></div>
+    </div>
+  `;
+
+  const status =
+    countBy(rows, "DeliveryStatus");
+
+  Plotly.react(
+    "statusChart",
+    [{
+      x: status.map(x => x[0]),
+      y: status.map(x => x[1]),
+      type: "bar",
+      marker: {
+        color: "#d50000"
+      },
+      text: status.map(x => x[1]),
+      textposition: "outside"
+    }],
+    {
+      ...baseLayout,
+      height: 350,
+      xaxis: {
+        ...baseLayout.xaxis,
+        tickangle: -30
+      }
+    },
+    config
+  );
+}
+
+function showOverview(rows) {
+
+  originalKpis.style.display = "";
+  originalFilters.style.display = "";
+  originalNotice.style.display = "";
+
+  renderOverview(rows);
+}
+
+function showOtherSection(rows) {
+
+  originalKpis.style.display = "";
+  originalFilters.style.display = "";
+  originalNotice.style.display = "none";
+
+  if (activeSection === "Modelos") {
+    renderModels(rows);
+  }
+
+  if (activeSection === "Cidades") {
+    renderCities(rows);
+  }
+
+  if (activeSection === "Tempo") {
+    renderTime(rows);
+  }
+
+  if (activeSection === "Relatórios") {
+    renderReports(rows);
+  }
+}
+
+function render() {
+
+  const rows = filteredRows();
+
+  updateKPIs(rows);
+
+  if (activeSection === "Visão Geral") {
+    showOverview(rows);
+  } else {
+    showOtherSection(rows);
+  }
+}
+
+function setupNavigation() {
+
+  const items =
+    document.querySelectorAll(".side-item");
+
+  const names = [
+    "Visão Geral",
+    "Modelos",
+    "Cidades",
+    "Tempo",
+    "Relatórios"
+  ];
+
+  items.forEach((item, index) => {
+
+    item.style.cursor = "pointer";
+
+    item.dataset.section =
+      names[index];
+
+    item.addEventListener("click", () => {
+
+      activeSection =
+        item.dataset.section;
+
+      items.forEach(i =>
+        i.classList.remove("active")
+      );
+
+      item.classList.add("active");
+
+      render();
+    });
+  });
+}
+
+document
+  .getElementById("clearFilters")
+  .addEventListener("click", () => {
+
+    filters.forEach(([key, id]) => {
+
+      const select =
+        document.getElementById(id);
+
+      if (select) {
+        select.value = "";
+      }
+    });
+
+    render();
+  });
+
+fillFilters();
+setupNavigation();
+render();
 </script>
 </body>
 </html>
